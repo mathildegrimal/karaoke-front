@@ -28,13 +28,16 @@ export default function Home() {
       const response = await fetch("/api", options);
 
       if (response.status !== 200) throw new Error("Can't login");
-      const postUser = await fetch("http://localhost:4000/singer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name }),
-      });
+      const postUser = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/singer`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name }),
+        }
+      );
       router.push("/action");
     } catch (err) {
       console.log(err);

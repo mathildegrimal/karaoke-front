@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const getRandomSingers = async () => {
       const response = await fetch(
-        `http://localhost:4000/singer/randomSinger/${number}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/singer/randomSinger/${number}`,
         {
           method: "GET",
           headers: {

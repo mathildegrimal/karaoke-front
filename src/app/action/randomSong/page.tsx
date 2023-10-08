@@ -11,12 +11,15 @@ export default function Home() {
   const router = useRouter();
   const [reload, setReload] = useState(false);
   const getRandomSong = async () => {
-    const response = await fetch("http://localhost:4000/song/random", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/song/random`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
     if (data) {
       setRandomSong(data);
