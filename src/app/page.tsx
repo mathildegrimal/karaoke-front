@@ -13,7 +13,7 @@ export default function Home() {
   const [lastname, setLastname] = useState("");
 
   async function login(event: FormEvent<HTMLFormElement>) {
-    // event.preventDefault();
+    event.preventDefault();
     if (firstname === "" || lastname === "") {
       return;
     }
@@ -28,16 +28,13 @@ export default function Home() {
       const response = await fetch("/api", options);
 
       if (response.status !== 200) throw new Error("Can't login");
-      const postUser = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/singer`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name }),
-        }
-      );
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/singer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      });
       router.push("/action");
     } catch (err) {
       console.log(err);
