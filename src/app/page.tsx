@@ -13,7 +13,7 @@ export default function Home() {
   const [lastname, setLastname] = useState("");
 
   async function login(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    // event.preventDefault();
     if (firstname === "" || lastname === "") {
       return;
     }
@@ -28,12 +28,12 @@ export default function Home() {
       const response = await fetch("/api", options);
 
       if (response.status !== 200) throw new Error("Can't login");
-      await fetch("http://localhost:4000/singer", {
+      const postUser = await fetch("http://localhost:4000/singer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ firstname, lastname }),
+        body: JSON.stringify({ name }),
       });
       router.push("/action");
     } catch (err) {
