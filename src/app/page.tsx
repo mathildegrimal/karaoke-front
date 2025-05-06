@@ -21,6 +21,8 @@ export default function Home() {
     if (firstname === "" || lastname === "") {
       return;
     }
+    setIsLoading(true);
+
     try {
       const options = {
         method: "POST",
@@ -31,7 +33,6 @@ export default function Home() {
       };
       const apiReady = await fetch("/api", options);
       if (apiReady.status !== 200) throw new Error("Service not available");
-      setIsLoading(true);
       const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/singer`, {
         method: "POST",
         headers: {
@@ -39,7 +40,6 @@ export default function Home() {
         },
         body: JSON.stringify({ firstname, lastname }),
       });
-      setIsLoading(false);
       if (user.status !== 201) {
         throw new Error("Can't login");
       } else {
@@ -53,6 +53,7 @@ export default function Home() {
         console.log(e);
       }
     }
+    setIsLoading(false);
   }
 
   return (
