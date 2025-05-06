@@ -32,6 +32,9 @@ const config: Config = {
       purple: colors.violet,
       yellow: colors.amber,
       pink: colors.fuchsia,
+      blue: {
+        400: "#01c0eb",
+      },
     },
     extend: {
       backgroundImage: {

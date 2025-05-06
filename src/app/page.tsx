@@ -2,6 +2,7 @@
 import { FormEvent, useState } from "react";
 import "./globals.css";
 import { useRouter } from "next/navigation";
+import Head from "next/head";
 
 interface Props {
   name: string;
@@ -42,7 +43,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center py-10 gap-4">
+    <div className="flex flex-col items-center py-10 gap-4">
       <p>Who are you ?</p>
       <form
         className="flex flex-col items-center gap-4"
@@ -64,10 +65,10 @@ export default function Home() {
           }}
           className="h-10 enabled:hover:border-gray-400 disabled:opacity-75 rounded-[6px] text-[#000000] p-2 text-center"
         />
-        <button className="w-20 rounded-[6px] p-2 bg-[#00e5ff] mx-auto">
+        <button className="w-20 rounded-[6px] p-2 bg-blue-400 mx-auto">
           Enter
         </button>
       </form>
-    </main>
+    </div>
   );
 }
