@@ -30,8 +30,7 @@ export default function Home() {
         body: JSON.stringify({ firstname, lastname }),
       };
       const apiReady = await fetch("/api", options);
-
-      if (apiReady.status !== 200) throw new Error("Can't login");
+      if (apiReady.status !== 200) throw new Error("Service not available");
       setIsLoading(true);
       const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/singer`, {
         method: "POST",
@@ -41,7 +40,7 @@ export default function Home() {
         body: JSON.stringify({ firstname, lastname }),
       });
       setIsLoading(false);
-      if (user.status !== 200) {
+      if (user.status !== 201) {
         throw new Error("Can't login");
       } else {
         setError("");
